@@ -24,8 +24,8 @@ RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /et
     && useradd -u 911 -U -d /config -s /bin/false abc \
     && usermod -G users abc \
     && apk add --no-cache \
-	transmission-cli==2.94-r3 \
-	transmission-daemon==2.94-r3
+	transmission-cli==2.94 \
+	transmission-daemon==2.94
 
 # Add configuration and scripts
 ADD openvpn/ /etc/openvpn/
