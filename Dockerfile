@@ -4,7 +4,7 @@ VOLUME /data
 VOLUME /config
 
 RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
-    && apk --no-cache add bash dumb-init ip6tables ufw@community openvpn shadow transmission-daemon==2.94-r3 transmission-cli==2.94-r3 \
+    && apk --no-cache add bash dumb-init ip6tables ufw@community openvpn shadow transmission-daemon transmission-cli \
         curl jq tzdata openrc tinyproxy tinyproxy-openrc openssh unrar git \
     && mkdir -p /opt/transmission-ui \
     && echo "Install Combustion" \
@@ -22,7 +22,10 @@ RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /et
     && rm -rf /tmp/* /var/tmp/* \
     && groupmod -g 1000 users \
     && useradd -u 911 -U -d /config -s /bin/false abc \
-    && usermod -G users abc
+    && usermod -G users abc \
+    && apk add --no-cache \
+	transmission-cli==2.94-r3 \
+	transmission-daemon==2.94-r3
 
 # Add configuration and scripts
 ADD openvpn/ /etc/openvpn/
