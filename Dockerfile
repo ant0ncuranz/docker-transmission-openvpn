@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM alpine:3.11
 
 VOLUME /data
 VOLUME /config
@@ -22,10 +22,7 @@ RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /et
     && rm -rf /tmp/* /var/tmp/* \
     && groupmod -g 1000 users \
     && useradd -u 911 -U -d /config -s /bin/false abc \
-    && usermod -G users abc \
-    && apk add --no-cache \
-	transmission-cli==2.94 \
-	transmission-daemon==2.94
+    && usermod -G users abc
 
 # Add configuration and scripts
 ADD openvpn/ /etc/openvpn/
